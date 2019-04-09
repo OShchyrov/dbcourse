@@ -1,26 +1,24 @@
 package com.database.course.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @Controller
 public class MainController {
 
-    @RequestMapping(name = "/")
+    @GetMapping(value = "/")
     public String index() {
         return "main";
     }
 
-    @RequestMapping(name = "/login", method = RequestMethod.GET)
+    @GetMapping(value = "/login")
     public String login() {
         return "login";
     }
 
-    @RequestMapping(name = "/login", method = RequestMethod.POST)
+    @PostMapping(value = "/login")
     public String login(Map<String, Object> model,
                         @RequestParam String login,
                         @RequestParam String password) {

@@ -1,12 +1,19 @@
 package com.database.course.controller;
 
+import com.database.course.dao.UserDAIO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 @Controller
 public class MainController {
+
+    @Autowired
+    private UserDAIO userDAIO;
 
     @GetMapping(value = "/")
     public String index() {
@@ -21,8 +28,13 @@ public class MainController {
     @PostMapping(value = "/login")
     public String login(Map<String, Object> model,
                         @RequestParam String login,
-                        @RequestParam String password) {
-
+                        @RequestParam String password,
+                        HttpServletResponse response) {
+        boolean isValid = userDAIO.isUserValid(login, password);
+        if (isValid) {
+            response.addCookie(new Cookie("uuid", login));
+            return "redirect:/";
+        }
         return "login";
     }
 }

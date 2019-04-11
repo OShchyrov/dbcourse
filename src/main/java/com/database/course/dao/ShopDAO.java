@@ -22,6 +22,7 @@ public class ShopDAO {
             rs.getString("manager"));
 
     public List<Shop> getShops(String category, String city) {
+        // todo 2x request
         return template.query("SELECT * FROM shops s INNER JOIN shops_categories c " +
                 "ON s.shopname = c.shopname " +
                 "WHERE c.category = ? AND s.city = ?", shopMapper, category, city);

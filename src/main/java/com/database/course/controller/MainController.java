@@ -1,5 +1,6 @@
 package com.database.course.controller;
 
+import com.database.course.dao.ShopDAO;
 import com.database.course.dao.UserDAIO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ public class MainController {
 
     @GetMapping(value = "/")
     public String index() {
-        return "main";
+        return "redirect:/shops";
     }
 
     @GetMapping(value = "/login")

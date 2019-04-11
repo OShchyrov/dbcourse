@@ -1,8 +1,58 @@
 body {
-    background: lightgrey;
+    background: #f6f6f6;
+    margin: 0;
 }
 
 .login-form {
     text-align: center;
     margin-top: 15em;
+}
+
+a {
+    text-decoration: none;
+}
+
+.menu {
+    background: #eaeaea;
+    width: 20%;
+    display: inline-block;
+}
+
+.menu-item {
+    padding: 15px;
+    border-bottom: black 1px solid;
+}
+
+.menu-item-horizontal {
+    margin: 5px 10px;
+    padding: 15px;
+    background: #eaeaea;
+    display: inline-block;
+}
+
+.content-item-header-menu {
+    text-align: center;
+}
+
+.selected-menu-item-content {
+    width: 78%;
+    display: inline-block;
+    position: absolute;
+    padding: 20px;
+}
+
+.table-data {
+    margin: auto;
+}
+
+.table-data table, .table-data table td {
+    border: black 1px solid;
+}
+
+.table-data table data {
+    padding: 10px 5px;
+}
+
+.form {
+    margin-top: 10px;
 }

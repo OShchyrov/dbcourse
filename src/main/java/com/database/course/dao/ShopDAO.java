@@ -46,4 +46,10 @@ public class ShopDAO {
                         "WHERE s.shopname = ? AND s.city = ?",
                 shopname, shopname, shopname, category, city, latitude, longitude, manager, oldShopname, oldCity);
     }
+
+    public void remove(String shopname, String city) {
+        template.update("DELETE FROM shops WHERE shopname = ? AND city = ?", shopname, city);
+        template.update("DELETE FROM shops_categories WHERE shopname = ?", shopname);
+        template.update("DELETE FROM product_shop WHERE shop_name = ?", shopname);
+    }
 }

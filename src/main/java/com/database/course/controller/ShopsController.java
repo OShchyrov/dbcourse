@@ -58,6 +58,13 @@ public class ShopsController {
         return "redirect:/shops/edit/";
     }
 
+    @GetMapping(value = "/remove")
+    public String remove(@RequestParam String shopname,
+                         @RequestParam String city) {
+        shopDAO.remove(shopname, city);
+        return "redirect:/shops/edit/";
+    }
+
     @GetMapping(value = "/insert")
     public String insert() {
         return "shops/insert";

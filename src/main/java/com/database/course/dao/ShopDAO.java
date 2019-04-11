@@ -59,4 +59,10 @@ public class ShopDAO {
         template.update("DELETE FROM product_score WHERE shopname = ?", shopname);
         template.update("DELETE FROM shop_manager WHERE shopname = ?", shopname);
     }
+
+    public void addShop(String shopname, String category, String city, String latitude, String longitude, String manager) {
+        template.update("INSERT INTO shops VALUES (?,?,?,?,?)", shopname, city, latitude, longitude, manager);
+        template.update("INSERT INTO shops_categories VALUES (?,?)", shopname, category);
+        template.update("INSERT INTO shop_manager VALUES (?,0,?)", manager, shopname);
+    }
 }

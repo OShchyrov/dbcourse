@@ -71,8 +71,13 @@ public class ShopsController {
     }
 
     @PostMapping(value = "/insert")
-    public String insert(Map<String, Object> model) {
-
-        return "shops/insert";
+    public String insert(@RequestParam String shopname,
+                         @RequestParam String category,
+                         @RequestParam String city,
+                         @RequestParam String latitude,
+                         @RequestParam String longitude,
+                         @RequestParam String manager) {
+        shopDAO.addShop(shopname, category, city, latitude, longitude, manager);
+        return "redirect:/shops/";
     }
 }

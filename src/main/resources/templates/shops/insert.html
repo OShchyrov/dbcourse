@@ -1,32 +1,15 @@
 {{>header}}
 
-{{#data}}
-<div class="table-data">
-    <h3>Результат виконання запиту користувача</h3>
-    <table>
-        <tr>
-            <td>Назва магазину</td>
-            <td>Широта</td>
-            <td>Довгота</td>
-        </tr>
-        {{#data}}
-        <tr>
-            <td>{{shopName}}</td>
-            <td>{{lat}}</td>
-            <td>{{lng}}</td>
-        </tr>
-        {{/data}}
-    </table>
-</div>
-{{/data}}
-
 <div class="form">
-    <h3>Введіть параметри для виконання запиту</h3>
+    <h3>Введіть параметри для додавання магазину</h3>
     <form method="post">
-        <input type="text" name="category" placeholder="Category"/><br/>
-        <input type="text" name="city" placeholder="City"/><br/>
-        <input type="text" name="offers" placeholder="Offers"/><br/>
-        <input type="submit" name="submit" value="Get"/>
+        <input type="text" name="shopname" placeholder="Shop name" /><br/>
+        <input type="text" name="category" placeholder="Category" /><br/>
+        <input type="text" name="city" placeholder="City" /><br/>
+        <input type="text" name="latitude" placeholder="Latitude" /><br/>
+        <input type="text" name="longitude" placeholder="Longitude" /><br/>
+        <input type="text" name="manager" placeholder="Manager" /><br/>
+        <input type="submit" name="submit" value="Додати"/>
     </form>
 </div>
 

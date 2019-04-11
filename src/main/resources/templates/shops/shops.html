@@ -1,7 +1,6 @@
 {{>header}}
 
-<div class="table-data">
-    {{#data}}
+<div class="table-data {{^data}}hidden{{/data}}">
     <h3>Результат виконання запиту користувача</h3>
     <table>
         <tr>
@@ -17,7 +16,6 @@
         </tr>
         {{/data}}
     </table>
-    {{/data}}
 </div>
 
 <div class="form">

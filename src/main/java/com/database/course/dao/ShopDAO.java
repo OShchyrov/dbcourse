@@ -1,6 +1,7 @@
 package com.database.course.dao;
 
 import com.database.course.entity.Shop;
+import javafx.scene.paint.Stop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -26,4 +27,23 @@ public class ShopDAO {
                 "WHERE c.category = ? AND s.city = ?", shopMapper, category, city);
     }
 
+    public List<Shop> findAll() {
+        return template.query("SELECT * FROM shops s INNER JOIN shops_categories c " +
+                "ON s.shopname = c.shopname ", shopMapper);
+    }
+
+    public Shop findByNameAndCity(String shopname, String city) {
+        return template.query("SELECT * FROM shops s INNER JOIN shops_categories c " +
+                "ON s.shopname = c.shopname " +
+                "WHERE c.shopname = ? AND s.city = ?", shopMapper, shopname, city).get(0);
+    }
+
+    public void update(String oldShopname, String oldCity, String shopname, String category, String city, String latitude, String longitude, String manager) {
+        template.update("UPDATE shops s INNER JOIN shops_categories sc ON s.shopname = sc.shopname " +
+                "INNER JOIN product_shop ps ON s.shopname = ps.shop_name " +
+                "SET s.shopname = ?, sc.shopname = ?, ps.shop_name = ?, " +
+                "sc.category = ?, s.city = ?, s.latitude = ?, s.longitude = ?, s.manager = ? " +
+                        "WHERE s.shopname = ? AND s.city = ?",
+                shopname, shopname, shopname, category, city, latitude, longitude, manager, oldShopname, oldCity);
+    }
 }

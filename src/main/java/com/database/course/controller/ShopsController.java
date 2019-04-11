@@ -19,7 +19,7 @@ public class ShopsController {
 
     @GetMapping(value = {"", "/"})
     public String shops() {
-        return "shops";
+        return "shops/shops";
     }
 
     @PostMapping(value = {"", "/"})
@@ -29,7 +29,43 @@ public class ShopsController {
                         @RequestParam String offers) {
 
         model.put("data", shopDAO.getShops(category, city));
-        return "shops";
+        return "shops/shops";
     }
 
+    @GetMapping(value = "/edit")
+    public String edit(Map<String, Object> model,
+                       @RequestParam(required = false) String shopname,
+                       @RequestParam(required = false) String city) {
+        if (shopname != null && city != null) {
+            model.put("shop", shopDAO.findByNameAndCity(shopname, city));
+        } else {
+            model.put("data", shopDAO.findAll());
+        }
+        return "shops/edit";
+    }
+
+    @PostMapping(value = "/edit")
+    public String edit(@RequestParam String oldShopname,
+                       @RequestParam String oldCity,
+                       @RequestParam String shopname,
+                       @RequestParam String category,
+                       @RequestParam String city,
+                       @RequestParam String latitude,
+                       @RequestParam String longitude,
+                       @RequestParam String manager) {
+
+        shopDAO.update(oldShopname, oldCity, shopname, category, city, latitude, longitude, manager);
+        return "redirect:/shops/edit/";
+    }
+
+    @GetMapping(value = "/insert")
+    public String insert() {
+        return "shops/insert";
+    }
+
+    @PostMapping(value = "/insert")
+    public String insert(Map<String, Object> model) {
+
+        return "shops/insert";
+    }
 }

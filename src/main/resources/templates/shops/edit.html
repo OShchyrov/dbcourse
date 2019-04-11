@@ -1,0 +1,46 @@
+{{>header}}
+
+<div class="table-data {{^data}}hidden{{/data}}">
+    <h3>Список магазинів</h3>
+    <table>
+        <tr>
+            <td>Назва магазину</td>
+            <td>Категорія</td>
+            <td>Місто</td>
+            <td>Широта</td>
+            <td>Довгота</td>
+            <td>Менеджер</td>
+            <td></td>
+        </tr>
+        {{#data}}
+        <tr>
+            <td>{{shopName}}</td>
+            <td>{{category}}</td>
+            <td>{{city}}</td>
+            <td>{{lat}}</td>
+            <td>{{lng}}</td>
+            <td>{{manager}}</td>
+            <td><a href=".?shopname={{shopName}}&city={{city}}">Редагувати</a></td>
+        </tr>
+        {{/data}}
+    </table>
+</div>
+
+{{#shop}}
+<div class="form">
+    <h3>Введіть нові дані</h3>
+    <form method="post" action=".">
+        <input type="hidden" name="oldShopname" value="{{shopName}}"/>
+        <input type="hidden" name="oldCity" value="{{city}}"/>
+        <input type="text" name="shopname" placeholder="Shop name" value="{{shopName}}"/><br/>
+        <input type="text" name="category" placeholder="Category" value="{{category}}"/><br/>
+        <input type="text" name="city" placeholder="City" value="{{city}}"/><br/>
+        <input type="text" name="latitude" placeholder="Latitude" value="{{lat}}"/><br/>
+        <input type="text" name="longitude" placeholder="Longitude" value="{{lng}}"/><br/>
+        <input type="text" name="manager" placeholder="Manager" value="{{manager}}"/><br/>
+        <input type="submit" name="submit" value="Редактировать"/>
+    </form>
+</div>
+{{/shop}}
+
+{{>footer}}

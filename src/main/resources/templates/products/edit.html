@@ -1,0 +1,42 @@
+{{>header}}
+
+<div class="table-data {{^data}}hidden{{/data}}">
+    <h3>Список магазинів</h3>
+    <table>
+        <tr>
+            <td>Назва товару</td>
+            <td>Категорія товару</td>
+            <td>Вартість</td>
+            <td>Назва магазину</td>
+            <td></td>
+            <td></td>
+        </tr>
+        {{#data}}
+        <tr>
+            <td>{{productName}}</td>
+            <td>{{category}}</td>
+            <td>{{price}}</td>
+            <td>{{shopName}}</td>
+            <td><a href=".?productName={{productName}}&category={{category}}">Редагувати</a></td>
+            <td><a href="/products/remove/?productName={{productName}}&category={{category}}">Видалити</a></td>
+        </tr>
+        {{/data}}
+    </table>
+</div>
+
+{{#product}}
+<div class="form">
+    <h3>Введіть нові дані</h3>
+    <form method="post" action=".">
+        <input type="hidden" name="oldProductName" value="{{productName}}"/>
+        <input type="hidden" name="oldCategory" value="{{category}}"/>
+        <input type="text" name="productName" placeholder="Product name" value="{{productName}}"/><br/>
+        <input type="text" name="category" placeholder="Category" value="{{category}}"/><br/>
+        <input type="text" name="price" placeholder="Price" value="{{price}}"/><br/>
+        <input type="text" name="shopName" placeholder="Shop name" value="{{shopName}}"/><br/>
+        <input type="submit" name="submit" value="Редактировать"/>
+    </form>
+</div>
+{{/product}}
+
+{{>footer}}

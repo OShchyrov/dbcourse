@@ -78,6 +78,6 @@ public class ShopsController {
                          @RequestParam String longitude,
                          @RequestParam String manager) {
         shopDAO.addShop(shopname, category, city, latitude, longitude, manager);
-        return "redirect:/shops/";
+        return "redirect:/shops/edit/";
     }
 }

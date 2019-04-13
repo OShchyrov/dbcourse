@@ -1,0 +1,26 @@
+{{>header}}
+
+<div class="table-data {{^data}}hidden{{/data}}">
+    <h3>Результат виконання запиту користувача</h3>
+    <table>
+        <tr>
+            <td>Ім'я менеджера</td>
+        </tr>
+        {{#data}}
+        <tr>
+            <td>{{name}}</td>
+        </tr>
+        {{/data}}
+    </table>
+</div>
+
+<div class="form">
+    <h3>Введіть параметри для виконання запиту</h3>
+    <form method="post">
+        <input type="text" name="shopName" placeholder="Shop Name"/><br/>
+        <input type="text" name="sold" placeholder="Sold"/><br/>
+        <input type="submit" name="submit" value="Get"/>
+    </form>
+</div>
+
+{{>footer}}

@@ -1,0 +1,39 @@
+{{>header}}
+
+<div class="table-data {{^data}}hidden{{/data}}">
+    <h3>Список магазинів</h3>
+    <table>
+        <tr>
+            <td>Ім'я менеджера</td>
+            <td>Продано товарів</td>
+            <td>Назва магазину</td>
+            <td></td>
+            <td></td>
+        </tr>
+        {{#data}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{sold}}</td>
+            <td>{{shopName}}</td>
+            <td><a href=".?manager={{name}}">Редагувати</a></td>
+            <td><a href="/managers/remove/?manager={{name}}">Видалити</a></td>
+        </tr>
+        {{/data}}
+    </table>
+</div>
+
+{{#manager}}
+<div class="form">
+    <h3>Введіть нові дані</h3>
+    <form method="post" action=".">
+        <input type="hidden" name="manager" value="{{name}}"/>
+        <input type="hidden" name="shopName" value="{{shopName}}"/><br/>
+        <input type="text" name="shopName" placeholder="Shop Name" value="{{shopName}}" disabled/><br/>
+        <input type="text" name="manager" placeholder="Manager name" value="{{name}}" disabled/><br/>
+        <input type="text" name="sold" placeholder="Sold products" value="{{sold}}"/><br/>
+        <input type="submit" name="submit" value="Редактировать"/>
+    </form>
+</div>
+{{/manager}}
+
+{{>footer}}

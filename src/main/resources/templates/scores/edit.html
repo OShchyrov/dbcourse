@@ -1,0 +1,39 @@
+{{>header}}
+
+<div class="table-data {{^data}}hidden{{/data}}">
+    <h3>Список балів</h3>
+    <table>
+        <tr>
+            <td>Назва товару</td>
+            <td>Назва магазину</td>
+            <td>Кількість балів</td>
+            <td></td>
+            <td></td>
+        </tr>
+        {{#data}}
+        <tr>
+            <td>{{productName}}</td>
+            <td>{{shopName}}</td>
+            <td>{{score}}</td>
+            <td><a href=".?productName={{productName}}&shopName={{shopName}}">Редагувати</a></td>
+            <td><a href="/scores/remove/?productName={{productName}}&shopName={{shopName}}">Видалити</a></td>
+        </tr>
+        {{/data}}
+    </table>
+</div>
+
+{{#product}}
+<div class="form">
+    <h3>Введіть нові дані</h3>
+    <form method="post" action=".">
+        <input type="hidden" name="productName" value="{{productName}}"/><br/>
+        <input type="hidden" name="shopName" value="{{shopName}}"/><br/>
+        <input type="text" name="productName" placeholder="Product name" value="{{productName}}" disabled/><br/>
+        <input type="text" name="shopName" placeholder="Shop name" value="{{shopName}}" disabled/><br/>
+        <input type="text" name="score" placeholder="Score" value="{{score}}"/><br/>
+        <input type="submit" name="submit" value="Редактировать"/>
+    </form>
+</div>
+{{/product}}
+
+{{>footer}}

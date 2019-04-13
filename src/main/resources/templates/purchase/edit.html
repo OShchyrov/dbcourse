@@ -1,0 +1,42 @@
+{{>header}}
+
+<div class="table-data {{^data}}hidden{{/data}}">
+    <h3>Список магазинів</h3>
+    <table>
+        <tr>
+            <td>Назва магазину</td>
+            <td>Назва товару</td>
+            <td>Дата покупки</td>
+            <td>Вартість покупки</td>
+            <td></td>
+            <td></td>
+        </tr>
+        {{#data}}
+        <tr>
+            <td>{{shopName}}</td>
+            <td>{{productName}}</td>
+            <td>{{date}}</td>
+            <td>{{price}}</td>
+            <td><a href=".?productName={{productName}}&date={{date}}">Редагувати</a></td>
+            <td><a href="/purchase/remove/?productName={{productName}}&date={{date}}">Видалити</a></td>
+        </tr>
+        {{/data}}
+    </table>
+</div>
+
+{{#product}}
+<div class="form">
+    <h3>Введіть нові дані</h3>
+    <form method="post" action=".">
+        <input type="hidden" name="productName" value="{{productName}}"/><br/>
+        <input type="hidden" name="oldDate" value="{{date}}"/><br/>
+        <input type="text" name="productName" placeholder="Product name" value="{{productName}}" disabled/><br/>
+        <input type="text" name="shopName" placeholder="Shop name" value="{{shopName}}" disabled/><br/>
+        <input type="date" name="date" placeholder="Date" value="{{date}}"/><br/>
+        <input type="text" name="price" placeholder="Price" value="{{price}}"/><br/>
+        <input type="submit" name="submit" value="Редактировать"/>
+    </form>
+</div>
+{{/product}}
+
+{{>footer}}

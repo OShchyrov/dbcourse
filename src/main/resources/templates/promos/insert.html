@@ -1,0 +1,16 @@
+{{>header}}
+
+<div class="form">
+    <h3>Введіть параметри для додавання магазину</h3>
+    <form method="post">
+        <input type="text" name="productName" placeholder="Product Name" /><br/>
+        <input type="text" name="shopName" placeholder="Shop Name" /><br/>
+        <select name="promo">
+            <option value="так">так</option>
+            <option value="ні">ні</option>
+        </select><br/>
+        <input type="submit" name="submit" value="Додати"/>
+    </form>
+</div>
+
+{{>footer}}

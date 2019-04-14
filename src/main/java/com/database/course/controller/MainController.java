@@ -3,6 +3,7 @@ package com.database.course.controller;
 import com.database.course.dao.UserDAIO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +18,10 @@ public class MainController {
     private UserDAIO userDAIO;
 
     @GetMapping(value = "/")
-    public String index() {
+    public String index(@CookieValue(value = "uuid", defaultValue = "", required = false) String user) {
+        if (user.length() == 0) {
+            return "redirect:/login";
+        }
         return "redirect:/shops";
     }
 

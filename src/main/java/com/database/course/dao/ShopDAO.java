@@ -21,10 +21,10 @@ public class ShopDAO {
             rs.getString("manager"));
 
     public List<Shop> getShops(String category, String city) {
-        // todo 2x request
         return template.query("SELECT * FROM shops s INNER JOIN shops_categories c " +
                 "ON s.shopname = c.shopname " +
-                "WHERE c.category = ? AND s.city = ?", shopMapper, category, city);
+                "INNER  JOIN products_promo pp ON s.shopname = pp.shopname " +
+                "WHERE c.category = ? AND s.city = ? AND s.shopname in (SELECT c.shopname FROM products_promo WHERE pp.promo = ?) ", shopMapper, category, city, "так");
     }
 
     public List<Shop> findAll() {

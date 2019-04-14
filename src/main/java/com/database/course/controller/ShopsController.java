@@ -25,8 +25,7 @@ public class ShopsController {
     @PostMapping(value = {"", "/"})
     public String shops(Map<String, Object> model,
                         @RequestParam String category,
-                        @RequestParam String city,
-                        @RequestParam String offers) {
+                        @RequestParam String city) {
 
         model.put("data", shopDAO.getShops(category, city));
         return "shops/shops";

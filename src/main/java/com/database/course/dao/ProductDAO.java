@@ -20,12 +20,11 @@ public class ProductDAO {
             rs.getString("shop_name"));
 
     public List<Product> getProducts(String shopname, String category, String price) {
-        // todo 2x request
         return template.query("SELECT * FROM product_shop p " +
                 "INNER JOIN product_prices pp " +
                 "ON p.product_name = pp.product_name " +
                 "WHERE p.shop_name = ? AND p.product_category = ? " +
-                "AND pp.price > ?", productMapper, shopname, category, price);
+                "AND pp.price in (SELECT price FROM product_prices WHERE pp.price < ?)", productMapper, shopname, category, price);
     }
 
     public List<Product> findAll() {

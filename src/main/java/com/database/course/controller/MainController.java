@@ -27,13 +27,15 @@ public class MainController {
     }
 
     @PostMapping(value = "/login")
-    public String login(Map<String, Object> model,
-                        @RequestParam String login,
+    public String login(@RequestParam String login,
                         @RequestParam String password,
                         HttpServletResponse response) {
         boolean isValid = userDAIO.isUserValid(login, password);
         if (isValid) {
-            response.addCookie(new Cookie("uuid", login));
+            Cookie cookie = new Cookie("uuid", login);
+            cookie.setPath("/");
+            cookie.setMaxAge(3600);
+            response.addCookie(cookie);
             return "redirect:/";
         }
         return "login";
@@ -41,9 +43,10 @@ public class MainController {
 
     @GetMapping(value = "/logout")
     public String logout(HttpServletResponse response) {
-        response.addCookie(new Cookie("uuid", "") {{
-            setMaxAge(0);
-        }});
+        Cookie cookie = new Cookie("uuid", null);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
         return "redirect:/login/";
     }
 }

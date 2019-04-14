@@ -1,7 +1,6 @@
 package com.database.course.dao;
 
 import com.database.course.entity.Manager;
-import com.database.course.entity.Score;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

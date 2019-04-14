@@ -21,8 +21,8 @@ public class LikedController {
 
     @PostMapping(value = {"", "/"})
     public String liked(Map<String, Object> model,
-                         @CookieValue(value = "uuid") String user,
-                         @RequestParam String exist) {
+                        @CookieValue(value = "uuid") String user,
+                        @RequestParam String exist) {
 
         model.put("data", likedDAO.getLiked(user, exist));
         return "liked/liked";

@@ -1,7 +1,6 @@
 package com.database.course.dao;
 
 import com.database.course.entity.Shop;
-import javafx.scene.paint.Stop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

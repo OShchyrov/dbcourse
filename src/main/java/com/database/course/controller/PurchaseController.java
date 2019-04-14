@@ -1,6 +1,5 @@
 package com.database.course.controller;
 
-import com.database.course.dao.CouponDAO;
 import com.database.course.dao.PurchaseDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,8 +24,8 @@ public class PurchaseController {
 
     @PostMapping(value = {"", "/"})
     public String purchase(Map<String, Object> model,
-                          @RequestParam String shopName,
-                          @RequestParam String date) {
+                           @RequestParam String shopName,
+                           @RequestParam String date) {
 
         model.put("data", purchaseDAO.getPurchase(shopName, date));
         return "purchase/purchase";

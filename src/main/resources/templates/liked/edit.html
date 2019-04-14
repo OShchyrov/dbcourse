@@ -1,0 +1,42 @@
+{{>header}}
+
+<div class="table-data {{^data}}hidden{{/data}}">
+    <h3>Список магазинів</h3>
+    <table>
+        <tr>
+            <td>Назва товару</td>
+            <td>Користувач</td>
+            <td>Наявність в магазині</td>
+            <td></td>
+            <td></td>
+        </tr>
+        {{#data}}
+        <tr>
+            <td>{{productName}}</td>
+            <td>{{user}}</td>
+            <td>{{exist}}</td>
+            <td><a href=".?productName={{productName}}">Редагувати</a></td>
+            <td><a href="/liked/remove/?productName={{productName}}">Видалити</a></td>
+        </tr>
+        {{/data}}
+    </table>
+</div>
+
+{{#product}}
+<div class="form">
+    <h3>Введіть нові дані</h3>
+    <form method="post" action=".">
+        <input type="hidden" name="productName" placeholder="Product name" value="{{productName}}"/><br/>
+        <input type="text" name="productName" placeholder="Product name" value="{{productName}}" disabled/><br/>
+        <input type="text" name="user" placeholder="User name" value="{{user}}"/><br/>
+        <select name="exist">
+            <option value="наявний">наявний</option>
+            <option value="не наявний">не наявний</option>
+            <option value="є на складі">є на складі</option>
+        </select><br/>
+        <input type="submit" name="submit" value="Редактировать"/>
+    </form>
+</div>
+{{/product}}
+
+{{>footer}}

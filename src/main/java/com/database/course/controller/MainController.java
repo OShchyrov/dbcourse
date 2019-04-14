@@ -38,4 +38,12 @@ public class MainController {
         }
         return "login";
     }
+
+    @GetMapping(value = "/logout")
+    public String logout(HttpServletResponse response) {
+        response.addCookie(new Cookie("uuid", "") {{
+            setMaxAge(0);
+        }});
+        return "redirect:/login/";
+    }
 }
